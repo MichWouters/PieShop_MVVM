@@ -7,13 +7,13 @@ namespace PieShop_MVVM.ViewModels
 {
     public class PieOverviewViewModel
     {
-        public ObservableCollection<Pie> Pies = new ObservableCollection<Pie>();
+        // Always initialize lists, even when empty
+        public ObservableCollection<Pie> Pies { get; set; } = new ObservableCollection<Pie>();
 
         private IPieRepository repository;
 
         public PieOverviewViewModel()
         {
-            // Always initialize lists, even when empty
             repository = new PieRepository();
 
             List<Pie> pies = repository.GetAllPies();
