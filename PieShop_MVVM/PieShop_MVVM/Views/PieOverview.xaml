@@ -2,17 +2,72 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:mybinding="clr-namespace:PieShop_MVVM.ViewModels"
+             BackgroundImageSource="patternwide.jpg" 
              x:Class="PieShop_MVVM.Views.PieOverview">
 
     <ContentPage.BindingContext>
         <mybinding:PieOverviewViewModel/>
     </ContentPage.BindingContext>
-    
-    
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="3" />
+        </Style>
+    </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout>
-            
-        </StackLayout>
+        <ScrollView>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Text="Load pies"/>
+            <Button Grid.Row="1" Text="Add new pie"/>
+
+            <ListView HasUnevenRows="True" 
+                      Grid.Row="2" 
+                      ItemsSource="{Binding Pies}"
+                      x:Name="PiesListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                                <Grid 
+                                HeightRequest="100"  
+                                Margin="5" 
+                                BackgroundColor="White" >
+                                    <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Image HeightRequest="125" 
+                                       VerticalOptions="Start" 
+                                       Source="{Binding ImageUrl}"/>
+                                <Label Grid.Column="1" 
+                                       VerticalOptions="Center" 
+                                       Text="{Binding Name}" 
+                                       Style="{StaticResource MediumLabelStyle}" 
+                                       FontSize="Large"/>
+                                <Label Grid.Column="2" 
+                                       Text="{Binding Price}" 
+                                       FontAttributes="Bold" 
+                                       Style="{StaticResource SmallLabelStyle}"
+                                       TextColor="DeepSkyBlue"
+                                       FontSize="Subtitle"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
