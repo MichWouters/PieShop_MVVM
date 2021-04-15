@@ -1,33 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PieShop_MVVM.Views.PieDetailView">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:PieShop_MVVM.ViewModels"
+             x:Class="PieShop_MVVM.Views.PieDetailView"
+             BackgroundImageSource="patternwide.jpg">
+
+    <ContentPage.BindingContext>
+        <local:PieDetailViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout Margin="5">
-            <Image Source="strawberrypiesmall.jpg"
+            <Image Source="{Binding SelectedPie.ImageUrl}"
                    HorizontalOptions="Center" 
                    VerticalOptions="Center" 
                    WidthRequest="250" 
                    HeightRequest="250"/>
             
-            <Entry Placeholder="Name" />
+            <Entry Placeholder="Name"
+                   Text="{Binding SelectedPie.Name}"/>
 
             <Entry Placeholder="Price" 
-                   Keyboard="Numeric" />
+                   Keyboard="Numeric"
+                   Text="{Binding SelectedPie.Price}"/>
 
             <Editor Placeholder="Description" 
-                    HeightRequest="100" />
+                    HeightRequest="100"
+                    Text="{Binding SelectedPie.Description}"/>
 
             <Grid ColumnDefinitions="5*, *">
                 <Label Text="In Stock?"/>
-                <Switch IsToggled="True"
+                <Switch IsToggled="{Binding SelectedPie.IsInStock}"
                         HorizontalOptions="End"
                         Grid.Column="1"/>
             </Grid>
           
 
             <Button Text="Save" 
-                    
+                    Command="{Binding SaveCommand}"
                     Style="{StaticResource RegularButtonStyle}" />
         </StackLayout>
     </ContentPage.Content>

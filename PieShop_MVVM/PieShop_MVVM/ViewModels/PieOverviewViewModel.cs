@@ -1,5 +1,6 @@
 ﻿using PieShop_MVVM.Models;
 using PieShop_MVVM.Services;
+using PieShop_MVVM.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -35,18 +36,9 @@ namespace PieShop_MVVM.ViewModels
             AddPieCommand = new Command(AddPie);
         }
 
-        private void AddPie()
+        private async void AddPie()
         {
-            var pie = new Pie
-            {
-                Description = "I am moist and delicious",
-                ImageUrl = "strawberrypiesmall.jpg",
-                IsInStock = true,
-                Name = "New Pie",
-                Price = 13.95
-            };
-
-            Pies.Add(pie);
+            await Shell.Current.GoToAsync(nameof(PieDetailView));
         }
 
         private void RefreshPies()
