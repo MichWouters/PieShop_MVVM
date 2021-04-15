@@ -6,5 +6,6 @@ namespace PieShop_MVVM.Services
     public interface IPieRepository
     {
         List<Pie> GetAllPies();
+        void AddPie(Pie selectedPie);
     }
 }

@@ -14,18 +14,17 @@ namespace PieShop_MVVM.ViewModels
 
         private IPieRepository repository;
 
-        public ICommand SaveCommand;
+        public ICommand SaveCommand => new Command(OnSave);
 
         public PieDetailViewModel()
         {
             SelectedPie = new Pie();
-            repository = new PieRepository();
-            SaveCommand = new Command(OnSave);
+            repository = PieRepository.GetSingleton();
         }
 
         private void OnSave()
         {
-            // TODO
+            repository.AddPie(SelectedPie);
         }
     }
 }

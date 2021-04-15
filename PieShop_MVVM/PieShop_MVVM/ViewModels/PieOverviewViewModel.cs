@@ -27,13 +27,15 @@ namespace PieShop_MVVM.ViewModels
         private IPieRepository repository;
 
         public ICommand AddPieCommand { get; }
+        public ICommand LoadPiesCommand { get; }
 
         public PieOverviewViewModel()
         {
-            repository = new PieRepository();
+            repository = PieRepository.GetSingleton();
 
             RefreshPies();
             AddPieCommand = new Command(AddPie);
+            LoadPiesCommand = new Command(RefreshPies);
         }
 
         private async void AddPie()
