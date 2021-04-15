@@ -25,7 +25,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button Grid.Row="0" Text="Load pies"/>
-            <Button Grid.Row="1" Text="Add new pie"/>
+            <Button Grid.Row="1" Text="Add new pie" Command="{Binding AddPieCommand}"/>
 
             <ListView HasUnevenRows="True" 
                       Grid.Row="2" 
@@ -45,7 +45,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="125"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="60"/>
                                 </Grid.ColumnDefinitions>
                                 
                                 <Image HeightRequest="125" 
@@ -61,7 +61,8 @@
                                        FontAttributes="Bold" 
                                        Style="{StaticResource SmallLabelStyle}"
                                        TextColor="DeepSkyBlue"
-                                       FontSize="Subtitle"/>
+                                       FontSize="Subtitle"
+                                       />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
