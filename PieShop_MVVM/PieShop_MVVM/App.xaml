@@ -11,7 +11,7 @@
             <Color x:Key="BethanysGreenColor">#22cfa7</Color>
 
             <Style x:Key="RegularButtonStyle" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
                 <Setter Property="VerticalOptions" Value="Start"></Setter>
                 <Setter Property="BackgroundColor" Value="{StaticResource BethanysGreenColor}"></Setter>
                 <Setter Property="TextColor" Value="White"></Setter>
