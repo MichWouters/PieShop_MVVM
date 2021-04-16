@@ -34,7 +34,7 @@ namespace PieShop_MVVM.ViewModels
 
         public PieOverviewViewModel()
         {
-            repository = PieRepository.GetSingleton();
+            repository = new PieRepository();
 
             RefreshPies();
             AddPieCommand = new Command(AddPie);

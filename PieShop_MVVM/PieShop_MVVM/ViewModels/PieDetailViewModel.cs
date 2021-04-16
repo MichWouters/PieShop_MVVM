@@ -50,7 +50,7 @@ namespace PieShop_MVVM.ViewModels
         public PieDetailViewModel()
         {
             SelectedPie = new Pie();
-            repository = PieRepository.GetSingleton();
+            repository = new PieRepository();
         }
 
         private void LoadPie(int value)
@@ -73,7 +73,7 @@ namespace PieShop_MVVM.ViewModels
             {
                 SelectedPie.ImageUrl = "strawberrypiesmall.jpg";
             }
-            repository.AddPie(SelectedPie);
+            repository.SavePie(SelectedPie);
 
             await Shell.Current.GoToAsync("..");
         }

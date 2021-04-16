@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PieShop_MVVM.Models;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Xamarin.Essentials;
 
 namespace PieShop_MVVM.Services
