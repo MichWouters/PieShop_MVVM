@@ -22,13 +22,15 @@ namespace PieShop_MVVM.ViewModels
             repository = PieRepository.GetSingleton();
         }
 
-        private void OnSave()
+        private async void OnSave()
         {
             if (SelectedPie.ImageUrl == null)
             {
                 SelectedPie.ImageUrl = "strawberrypiesmall.jpg";
             }
             repository.AddPie(SelectedPie);
+
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

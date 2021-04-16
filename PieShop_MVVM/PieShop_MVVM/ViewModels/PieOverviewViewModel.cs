@@ -1,8 +1,10 @@
 ﻿using PieShop_MVVM.Models;
 using PieShop_MVVM.Services;
 using PieShop_MVVM.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -45,8 +47,21 @@ namespace PieShop_MVVM.ViewModels
 
         private void RefreshPies()
         {
-            List<Pie> pies = repository.GetAllPies();
-            Pies = new ObservableCollection<Pie>(pies);
+            IsBusy = true;
+
+            try
+            {
+                List<Pie> pies = repository.GetAllPies();
+                Pies = new ObservableCollection<Pie>(pies);
+            }
+            catch (Exception e)
+            {
+                Debug.Write(e);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

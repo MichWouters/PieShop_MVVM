@@ -22,12 +22,11 @@
     <RefreshView Command="{Binding LoadPiesCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <StackLayout>
-                <ListView HasUnevenRows="True" 
-                      ItemsSource="{Binding Pies}"
-                      x:Name="PiesListView">
-                    <ListView.ItemTemplate>
+                <CollectionView x:Name="PiesListView"
+                                ItemsSource="{Binding Pies}"
+                                SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
                                 <Grid 
                                 HeightRequest="100"  
                                 Margin="5" 
@@ -58,10 +57,9 @@
                                        FontSize="Subtitle"
                                        />
                                 </Grid>
-                            </ViewCell>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </StackLayout>
     </RefreshView>
 </ContentPage>
