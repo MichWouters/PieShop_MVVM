@@ -26,6 +26,7 @@ namespace PieShop_MVVM.ViewModels
         }
 
         private ICoffeeRepository repository;
+        private GenericRepo<Coffee> coffeeGenericRepo;
 
         public ICommand AddCoffeeCommand { get; }
         public ICommand LoadCoffeesCommand { get; }
@@ -34,6 +35,7 @@ namespace PieShop_MVVM.ViewModels
         public CoffeeOverviewViewModel()
         {
             repository = new CoffeeRepository();
+            coffeeGenericRepo = new GenericRepo<Coffee>();
             Coffees = new ObservableCollection<Coffee>();
 
             RefreshCoffees();

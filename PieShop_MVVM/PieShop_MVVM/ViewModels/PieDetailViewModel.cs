@@ -29,6 +29,7 @@ namespace PieShop_MVVM.ViewModels
 
 
         private IPieRepository repository;
+        private GenericRepo<Pie> pieGenericRepo;
 
         public ICommand SaveCommand => new Command(OnSave);
 
@@ -51,13 +52,14 @@ namespace PieShop_MVVM.ViewModels
         {
             SelectedPie = new Pie();
             repository = new PieRepository();
+            pieGenericRepo = new GenericRepo<Pie>();
         }
 
         private async void LoadPie(int value)
         {
             try
             {
-                var pie = await repository.GetPieAsync(value);
+                var pie = await pieGenericRepo.FindItemAsync(value);
                 SelectedPie = pie;
 
             }
@@ -73,7 +75,7 @@ namespace PieShop_MVVM.ViewModels
             {
                 SelectedPie.ImageUrl = "strawberrypiesmall.jpg";
             }
-            await repository.SavePieAsync(SelectedPie);
+            await pieGenericRepo.AddItem(SelectedPie);
 
             await Shell.Current.GoToAsync("..");
         }

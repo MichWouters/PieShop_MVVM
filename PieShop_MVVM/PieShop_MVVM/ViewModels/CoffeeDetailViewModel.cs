@@ -26,6 +26,7 @@ namespace PieShop_MVVM.ViewModels
         }
 
         private ICoffeeRepository repository;
+        private GenericRepo<Coffee> coffeeGenericRepo;
 
         public ICommand SaveCommand => new Command(OnSave);
 
@@ -48,13 +49,14 @@ namespace PieShop_MVVM.ViewModels
         {
             SelectedCoffee = new Coffee();
             repository = new CoffeeRepository();
+            coffeeGenericRepo = new GenericRepo<Coffee>();
         }
 
         private async void LoadCoffee(int value)
         {
             try
             {
-                var coffee = await repository.GetCoffeeAsync(value);
+                var coffee = await coffeeGenericRepo.FindItemAsync(value);
                 SelectedCoffee = coffee;
             }
             catch (Exception)
@@ -69,7 +71,7 @@ namespace PieShop_MVVM.ViewModels
             {
                 SelectedCoffee.ImageUrl = "lavazza.jpg";
             }
-            await repository.AddCoffeeAsync(SelectedCoffee);
+            await coffeeGenericRepo.AddItem(SelectedCoffee);
 
             await Shell.Current.GoToAsync("..");
         }
