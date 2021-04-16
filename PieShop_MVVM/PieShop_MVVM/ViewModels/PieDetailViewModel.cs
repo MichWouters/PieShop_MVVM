@@ -24,6 +24,10 @@ namespace PieShop_MVVM.ViewModels
 
         private void OnSave()
         {
+            if (SelectedPie.ImageUrl == null)
+            {
+                SelectedPie.ImageUrl = "strawberrypiesmall.jpg";
+            }
             repository.AddPie(SelectedPie);
         }
     }
