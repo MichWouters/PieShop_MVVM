@@ -9,29 +9,24 @@
         <mybinding:PieOverviewViewModel/>
     </ContentPage.BindingContext>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddPieCommand}" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="Margin" Value="3" />
         </Style>
     </ContentPage.Resources>
-        <ContentPage.Content>
-        <ScrollView>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" Text="Load pies" Command="{Binding LoadPiesCommand}"/>
-                <Button Grid.Row="1" Text="Add new pie" Command="{Binding AddPieCommand}"/>
 
-                <ListView HasUnevenRows="True" 
-                      Grid.Row="2" 
-                      ItemsSource="{Binding Pies}"
-                      x:Name="PiesListView">
-                    <ListView.ItemTemplate>
+    <RefreshView Command="{Binding LoadPiesCommand}"
+                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <StackLayout>
+                <CollectionView x:Name="PiesListView"
+                                ItemsSource="{Binding Pies}"
+                                SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
                                 <Grid 
                                 HeightRequest="100"  
                                 Margin="5" 
@@ -62,11 +57,9 @@
                                        FontSize="Subtitle"
                                        />
                                 </Grid>
-                            </ViewCell>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-        </ScrollView>
-    </ContentPage.Content>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+    </RefreshView>
 </ContentPage>
