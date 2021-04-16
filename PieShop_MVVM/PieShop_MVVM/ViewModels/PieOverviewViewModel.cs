@@ -30,6 +30,7 @@ namespace PieShop_MVVM.ViewModels
 
         public ICommand AddPieCommand { get; }
         public ICommand LoadPiesCommand { get; }
+        public Command<Pie> ItemTapped { get; }
 
         public PieOverviewViewModel()
         {
