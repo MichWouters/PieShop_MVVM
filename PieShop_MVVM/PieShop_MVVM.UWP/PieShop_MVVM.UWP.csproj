@@ -106,6 +106,9 @@
   <ItemGroup>
     <Content Include="icon_addpie.png" />
     <Content Include="cheesecakesmall.jpg" />
+    <Content Include="icon_coffee.png" />
+    <Content Include="lavazza.jpg" />
+    <Content Include="melita.jpg" />
     <Content Include="patternwide.png" />
     <Content Include="icon_pie.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -138,6 +141,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="pumpkinpiesmall.jpg" />
     <Content Include="rhubarbpiesmall.jpg" />
+    <Content Include="segafredo.jpg" />
     <Content Include="strawberrypiesmall.jpg" />
     <Content Include="xamarin_logo.png" />
     <Content Include="icon_about.png" />
