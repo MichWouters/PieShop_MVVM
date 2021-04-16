@@ -1,5 +1,6 @@
 ﻿using PieShop_MVVM.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PieShop_MVVM.Services
 {
@@ -80,6 +81,11 @@ namespace PieShop_MVVM.Services
         public void AddPie(Pie pie)
         {
             pies.Add(pie);
+        }
+
+        public Pie GetPie(int id)
+        {
+            return pies.FirstOrDefault(x => x.ID == id);
         }
     }
 };

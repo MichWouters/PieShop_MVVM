@@ -7,5 +7,6 @@ namespace PieShop_MVVM.Services
     {
         List<Pie> GetAllPies();
         void AddPie(Pie selectedPie);
+        Pie GetPie(int id);
     }
 }

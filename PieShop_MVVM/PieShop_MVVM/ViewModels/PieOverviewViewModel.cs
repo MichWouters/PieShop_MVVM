@@ -39,6 +39,13 @@ namespace PieShop_MVVM.ViewModels
             RefreshPies();
             AddPieCommand = new Command(AddPie);
             LoadPiesCommand = new Command(RefreshPies);
+            ItemTapped = new Command<Pie>(OnPieSelected);
+        }
+
+        private async void OnPieSelected(Pie pie)
+        {
+            await Shell.Current.GoToAsync(
+                $"{nameof(PieDetailView)}?{nameof(PieDetailViewModel.PieId)}={pie.ID}");
         }
 
         private async void AddPie()
