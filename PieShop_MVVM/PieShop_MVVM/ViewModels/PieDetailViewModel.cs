@@ -53,11 +53,11 @@ namespace PieShop_MVVM.ViewModels
             repository = new PieRepository();
         }
 
-        private void LoadPie(int value)
+        private async void LoadPie(int value)
         {
             try
             {
-                var pie = repository.GetPie(value);
+                var pie = await repository.GetPieAsync(value);
                 SelectedPie = pie;
 
             }
@@ -73,7 +73,7 @@ namespace PieShop_MVVM.ViewModels
             {
                 SelectedPie.ImageUrl = "strawberrypiesmall.jpg";
             }
-            repository.SavePie(SelectedPie);
+            await repository.SavePieAsync(SelectedPie);
 
             await Shell.Current.GoToAsync("..");
         }

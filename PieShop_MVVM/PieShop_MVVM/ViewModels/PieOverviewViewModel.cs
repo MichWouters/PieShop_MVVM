@@ -53,13 +53,13 @@ namespace PieShop_MVVM.ViewModels
             await Shell.Current.GoToAsync(nameof(PieDetailView));
         }
 
-        private void RefreshPies()
+        private async void RefreshPies()
         {
             IsBusy = true;
 
             try
             {
-                List<Pie> pies = repository.GetAllPies();
+                List<Pie> pies = await repository.GetAllPiesAsync();
                 Pies = new ObservableCollection<Pie>(pies);
             }
             catch (Exception e)
