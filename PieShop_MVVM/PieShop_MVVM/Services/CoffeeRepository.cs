@@ -1,85 +1,43 @@
-﻿using PieShop_MVVM.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PieShop_MVVM.Models;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace PieShop_MVVM.Services
 {
     public class CoffeeRepository : ICoffeeRepository
     {
-        // SINGLETON
-        private static CoffeeRepository instance;
-
-        // Private constructor -> No outside instancing of this class
-        private CoffeeRepository()
+        public async Task<List<Coffee>> GetAllCoffeesAsync()
         {
-            AddDummyData();
-        }
-
-        // Static method. Other classes will request the one object in this class
-        // If it does not exist yet, create it first.
-        public static CoffeeRepository GetSingleton()
-        {
-            if (instance == null)
+            using (var dbContext = new PieshopContext())
             {
-                instance = new CoffeeRepository();
+                return await dbContext.Coffees.ToListAsync();
             }
-
-            return instance;
         }
 
-        // MOCK Database
-        private List<Coffee> coffees;
-
-        public List<Coffee> GetAllCoffees()
+        public async Task AddCoffeeAsync(Coffee coffee)
         {
-            return coffees;
-        }
-
-        private void AddDummyData()
-        {
-            coffees = new List<Coffee>
+            using (var dbContext = new PieshopContext())
             {
-                    new Coffee
-                    {
-                        ID = 1,
-                        ImageUrl = "segafredo.jpg",
-                        Name = "Coffee with milk",
-                        Price = 15.95,
-                        Brand = "Douwe Egberts",
-                        HasMilk = true,
-                        Caffeine = 7
-                    },
-                    new Coffee
-                    {
-                        ID = 2,
-                        ImageUrl="lavazza.jpg",
-                        Name = "Espresso",
-                        Price = 12.95,
-                        Brand = "Douwe Egberts",
-                        HasMilk = true,
-                        Caffeine = 6
-                    },
-                    new Coffee
-                    {
-                        ID = 3,
-                        ImageUrl="melita.jpg",
-                        Name = "Bitter stuff",
-                        Price = 9.95,
-                        Brand = "Java",
-                        HasMilk = false,
-                        Caffeine = 7
-                    },
-                };
+                if (coffee.ID == 0)
+                {
+                    await dbContext.Coffees.AddAsync(coffee);
+                }
+                else
+                {
+                    dbContext.Coffees.Update(coffee);
+                }
+
+                await dbContext.SaveChangesAsync();
+            }
         }
 
-        public void AddCoffee(Coffee coffee)
+        public async Task<Coffee> GetCoffeeAsync(int id)
         {
-            coffees.Add(coffee);
-        }
-
-        public Coffee GetCoffee(int id)
-        {
-            return coffees.FirstOrDefault(x => x.ID == id);
+            using (var dbContext = new PieshopContext())
+            {
+                return await dbContext.Coffees.FindAsync();
+            }
         }
     }
 }

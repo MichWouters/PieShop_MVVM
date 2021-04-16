@@ -47,14 +47,14 @@ namespace PieShop_MVVM.ViewModels
         public CoffeeDetailViewModel()
         {
             SelectedCoffee = new Coffee();
-            repository = CoffeeRepository.GetSingleton();
+            repository = new CoffeeRepository();
         }
 
-        private void LoadCoffee(int value)
+        private async void LoadCoffee(int value)
         {
             try
             {
-                var coffee = repository.GetCoffee(value);
+                var coffee = await repository.GetCoffeeAsync(value);
                 SelectedCoffee = coffee;
             }
             catch (Exception)
@@ -69,7 +69,7 @@ namespace PieShop_MVVM.ViewModels
             {
                 SelectedCoffee.ImageUrl = "lavazza.jpg";
             }
-            repository.AddCoffee(SelectedCoffee);
+            await repository.AddCoffeeAsync(SelectedCoffee);
 
             await Shell.Current.GoToAsync("..");
         }

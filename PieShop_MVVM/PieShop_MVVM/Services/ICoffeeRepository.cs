@@ -1,12 +1,13 @@
 ﻿using PieShop_MVVM.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PieShop_MVVM.Services
 {
     public interface ICoffeeRepository
     {
-        void AddCoffee(Coffee coffee);
-        List<Coffee> GetAllCoffees();
-        Coffee GetCoffee(int id);
+        Task AddCoffeeAsync(Coffee coffee);
+        Task<List<Coffee>> GetAllCoffeesAsync();
+        Task<Coffee> GetCoffeeAsync(int id);
     }
 }

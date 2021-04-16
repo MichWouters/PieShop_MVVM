@@ -33,7 +33,7 @@ namespace PieShop_MVVM.ViewModels
 
         public CoffeeOverviewViewModel()
         {
-            repository = CoffeeRepository.GetSingleton();
+            repository = new CoffeeRepository();
             Coffees = new ObservableCollection<Coffee>();
 
             RefreshCoffees();
@@ -52,13 +52,13 @@ namespace PieShop_MVVM.ViewModels
             await Shell.Current.GoToAsync(nameof(CoffeeDetailView));
         }
 
-        private void RefreshCoffees()
+        private async void RefreshCoffees()
         {
             IsBusy = true;
 
             try
             {
-                List<Coffee> coffees = repository.GetAllCoffees();
+                List<Coffee> coffees = await repository.GetAllCoffeesAsync();
                 Coffees = new ObservableCollection<Coffee>(coffees);
             }
             catch (Exception e)
