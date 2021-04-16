@@ -14,61 +14,61 @@
             <Setter Property="Margin" Value="3" />
         </Style>
     </ContentPage.Resources>
-    
-    <ContentPage.Content>
-        <ScrollView>
-        <Grid>
+    <ScrollView>
+        <ContentPage.Content>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Button Grid.Row="0" Text="Load pies" Command="{Binding LoadPiesCommand}"/>
-            <Button Grid.Row="1" Text="Add new pie" Command="{Binding AddPieCommand}"/>
+            <Grid>
 
-            <ListView HasUnevenRows="True" 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Text="Load pies" Command="{Binding LoadPiesCommand}"/>
+                <Button Grid.Row="1" Text="Add new pie" Command="{Binding AddPieCommand}"/>
+
+                <ListView HasUnevenRows="True" 
                       Grid.Row="2" 
                       ItemsSource="{Binding Pies}"
                       x:Name="PiesListView">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
                                 <Grid 
                                 HeightRequest="100"  
                                 Margin="5" 
                                 BackgroundColor="White" >
                                     <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="125"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="60"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <Image HeightRequest="125" 
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="125"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image HeightRequest="125" 
                                        VerticalOptions="Start" 
                                        Source="{Binding ImageUrl}"/>
-                                <Label Grid.Column="1" 
+                                    <Label Grid.Column="1" 
                                        VerticalOptions="Center" 
                                        Text="{Binding Name}" 
                                        Style="{StaticResource MediumLabelStyle}" 
                                        FontSize="Large"/>
-                                <Label Grid.Column="2" 
+                                    <Label Grid.Column="2" 
                                        Text="{Binding Price}" 
                                        FontAttributes="Bold" 
                                        Style="{StaticResource SmallLabelStyle}"
                                        TextColor="DeepSkyBlue"
                                        FontSize="Subtitle"
                                        />
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-        </ScrollView>
-    </ContentPage.Content>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </ContentPage.Content>
+    </ScrollView>
 </ContentPage>
