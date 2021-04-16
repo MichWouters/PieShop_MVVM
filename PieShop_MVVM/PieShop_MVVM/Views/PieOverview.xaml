@@ -14,11 +14,9 @@
             <Setter Property="Margin" Value="3" />
         </Style>
     </ContentPage.Resources>
-    <ScrollView>
         <ContentPage.Content>
-
+        <ScrollView>
             <Grid>
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
@@ -69,6 +67,6 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-        </ContentPage.Content>
-    </ScrollView>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
